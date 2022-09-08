@@ -32,8 +32,8 @@
                         @Html.DisplayFor(modelItem => item.TipoRelatorio)
                     </td>
                     <td>
-                        <a id='7898' class="btn btn-info disabled" style="color: white;">
-                            <span class="fas fa-edit" id="@item.Id">PENDENTE</span>
+                        <a id='@item.Id' class="btn btn-info disabled" style="color: white;">
+                            <span class="fas fa-edit" id="relatorio-status-@item.Id">PENDENTE</span>
                         </a>
                     </td>
                 </tr>
@@ -41,3 +41,6 @@
         </tbody>
     </table>
 </div>
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/signal.js"></script>
