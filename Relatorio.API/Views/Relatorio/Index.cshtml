@@ -1,0 +1,43 @@
+@model IEnumerable<Relatorio>
+    
+<h2>Solicitação de relatório</h2>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <div class="pull-left">
+                <a asp-action="Create" class="btn btn-primary">
+                    <span title="Incluir Livro" class="fas fa-plus"></span> Solicitar Relatório
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="panel panel-default">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TipoRelatorio)
+                </th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoRelatorio)
+                    </td>
+                    <td>
+                        <a id='7898' class="btn btn-info disabled" style="color: white;">
+                            <span class="fas fa-edit" id="@item.Id">PENDENTE</span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

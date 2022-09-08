@@ -1,0 +1,37 @@
+@using Relatorio.Core.Models
+@model Relatorio
+
+<h2>Novo Relatório</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            <label asp-for="TipoRelatorio" class="col-md-4 control-label"></label>
+            <div class="col-md-10">
+                <select name="tipoRelatorio" class="form-control" asp-for="TipoRelatorio" onchange="inserirDuracao(this.value)">
+                    <option value="">Selecione um tipo de relatório</option>
+                    <option value="Vendas">Vendas</option>
+                    <option value="Estoque">Estoque</option>
+                    <option value="Faturamento">Faturamento</option>
+                </select>
+                <span asp-validation-for="TipoRelatorio" class="text-danger"></span>
+            </div>
+            <br />
+            <label asp-for="Duracao" class="col-md-4 control-label"></label>
+            <div class="col-md-10">
+                <input type="text" asp-for="Duracao" id="duracao" value="0" readonly>
+                <span asp-validation-for="Duracao" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-info">Retornar</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script src="~/js/duracao.js" asp-append-version="true"></script>
