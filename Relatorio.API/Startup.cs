@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Relatorio.API.Hubs;
 using Relatorio.Configuration;
 using Relatorio.Data.Context;
 
@@ -40,12 +41,27 @@ namespace Relatorio
             );
 
             services.AddControllersWithViews();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("ClientPermission", policy =>
+                {
+                    policy.AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .SetIsOriginAllowed(x => true)
+                        .AllowCredentials();
+                });
+            });
+
+            services.AddSignalR();
         }
 
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             DatabaseManagementService.MigrationInitialisation(app);
+
+            app.UseCors("ClientPermission");
 
             if (env.IsDevelopment())
             {
@@ -56,7 +72,7 @@ namespace Relatorio
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-            app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -65,6 +81,8 @@ namespace Relatorio
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<RelatorioHub>("/relatorioHub");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
