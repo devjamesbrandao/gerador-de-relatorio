@@ -10,5 +10,6 @@ namespace Relatorio.Core.Models
         public string TipoRelatorio { get; set; }
         [Display(Name="Duração em segundos")]
         public int Duracao { get; set; }
+        public bool Concluido { get; set; }
     }
 }
