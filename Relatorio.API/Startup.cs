@@ -1,13 +1,16 @@
 using System;
+using DevFreela.infrastructure.MessageBus;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Relatorio.API.Hubs;
 using Relatorio.Configuration;
+using Relatorio.Core.Interfaces;
 using Relatorio.Data.Context;
+using Relatorio.Data.Hubs;
+using Relatorio.Data.MessageBus.Consumer;
 
 namespace Relatorio
 {
@@ -54,6 +57,10 @@ namespace Relatorio
             });
 
             services.AddSignalR();
+
+            services.AddScoped<IMessageBusPublishService, MessageBusPublishService>();
+
+            services.AddHostedService<RelatorioConsumer>();
         }
 
 
