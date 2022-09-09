@@ -1,4 +1,5 @@
 @model IEnumerable<Relatorio>
+@{string className = ""; string status = "";}
     
 <h2>Solicitação de relatório</h2>
 <hr />
@@ -27,13 +28,23 @@
         <tbody>
             @foreach (var item in Model)
             {
+                @if(item.Concluido)
+                {
+                    className = "success";
+                    status = "CONCLUÍDO";
+                }
+                else
+                {
+                    className = "info";
+                    status = "PENDENTE";
+                }
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.TipoRelatorio)
                     </td>
                     <td>
-                        <a id='@item.Id' class="btn btn-info disabled" style="color: white;">
-                            <span class="fas fa-edit" id="relatorio-status-@item.Id">PENDENTE</span>
+                        <a id='relatorio-item-color-@item.Id' class='btn btn-@className disabled' style="color: white;">
+                            <span class="fas fa-edit" id="relatorio-item-status-@item.Id">@status</span>
                         </a>
                     </td>
                 </tr>
