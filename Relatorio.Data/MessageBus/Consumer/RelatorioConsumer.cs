@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using Relatorio.Core.Interfaces;
 using Relatorio.Data.Context;
 using Relatorio.Data.Hubs;
 
@@ -71,9 +72,9 @@ namespace Relatorio.Data.MessageBus.Consumer
 
             using(var scope = _serviceProvider.CreateScope())
             {
-                var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                var repositorio = scope.ServiceProvider.GetRequiredService<IRelatorioRepository>();
 
-                context.Database.ExecuteSqlRaw("update Relatorios set Concluido = 1 where Id = {0}", relatorio.Id);
+                await repositorio.AtualizarStatusRelatorio(relatorio.Id);
             }
 
             await _hub.Clients.All.SendAsync("ReceiveMessage", relatorio.Id);

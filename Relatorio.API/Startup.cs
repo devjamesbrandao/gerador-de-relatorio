@@ -13,6 +13,7 @@ using Relatorio.Core.Interfaces;
 using Relatorio.Data.Context;
 using Relatorio.Data.Hubs;
 using Relatorio.Data.MessageBus.Consumer;
+using Relatorio.Data.Repository;
 
 namespace Relatorio
 {
@@ -36,7 +37,7 @@ namespace Relatorio
 
             var connectionString = $"Server={server}, {port};Initial Catalog={database};User ID={user};Password={password}";
 
-            services.AddDbContext<ApplicationDbContext>(
+            services.AddDbContext<RelatorioContext>(
                 options => 
                     options.UseSqlServer(
                         connectionString,
@@ -76,6 +77,8 @@ namespace Relatorio
             services.AddSignalR();
 
             services.AddScoped<IMessageBusPublishService, MessageBusPublishService>();
+
+            services.AddScoped<IRelatorioRepository, RelatorioRepository>();
 
             services.AddHostedService<RelatorioConsumer>();
         }

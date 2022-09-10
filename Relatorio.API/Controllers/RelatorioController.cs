@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,25 +12,27 @@ namespace Relatorio.Controllers
 {
     public class RelatorioController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IRelatorioRepository _repositorio;
 
         private readonly IMessageBusPublishService _messageBus;
 
-        public RelatorioController(ApplicationDbContext context, IMessageBusPublishService messageBus)
+        public RelatorioController(IRelatorioRepository repositorio, IMessageBusPublishService messageBus)
         {
-            _context = context;
+            _repositorio = repositorio;
             _messageBus = messageBus;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<ActionResult<List<Core.Models.Relatorio>>> Index()
         {
-            var relatorios = _context.Relatorios.ToList();
+            var relatorios = await _repositorio.ObterTodosRelatorios();
+
             return View(relatorios);
         }
 
         public ActionResult Health()
         {
-            return Redirect("http:localhost:5000/dashboard");
+            return Redirect("/dashboard");
         }
 
         [HttpGet]
@@ -45,10 +48,8 @@ namespace Relatorio.Controllers
             {
                 try
                 {
-                    _context.Add(relatorio);
+                    await _repositorio.AdicionarRelatorio(relatorio);
 
-                    await _context.SaveChangesAsync();
-                    
                     var json = JsonConvert.SerializeObject(relatorio);
                     
                     var body = Encoding.UTF8.GetBytes(json);
@@ -62,6 +63,7 @@ namespace Relatorio.Controllers
                     ModelState.AddModelError(string.Empty, $"Something went wrong {ex.Message}");
                 }
             }
+
             ModelState.AddModelError(string.Empty, $"Something went wrong, invalid model");
 
             return View();
