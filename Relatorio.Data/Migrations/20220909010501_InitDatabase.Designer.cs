@@ -10,7 +10,7 @@ using Relatorio.Data.Context;
 
 namespace Relatorio.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(RelatorioContext))]
     [Migration("20220909010501_InitDatabase")]
     partial class InitDatabase
     {
