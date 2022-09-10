@@ -11,7 +11,11 @@ namespace Relatorio.Configuration
         {
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
-                serviceScope.ServiceProvider.GetService<RelatorioContext>().Database.Migrate();
+                var database = serviceScope.ServiceProvider.GetService<RelatorioContext>();
+
+                database.Database.EnsureDeleted();
+
+                database.Database.Migrate();
             }
         }
     }
