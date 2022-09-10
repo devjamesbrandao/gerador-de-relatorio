@@ -27,6 +27,11 @@ namespace Relatorio.Controllers
             return View(relatorios);
         }
 
+        public ActionResult Health()
+        {
+            return Redirect("http:localhost:5000/dashboard");
+        }
+
         [HttpGet]
         public IActionResult Create()
         {
