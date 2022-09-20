@@ -1,4 +1,5 @@
-version: '3'
+version: '3.4'
+
 services:
   mssql-server:
     image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
@@ -10,13 +11,37 @@ services:
       - "1433:1433"
     volumes:
       - C:\dados\volumes\sqlserver:/var/opt/mssql/data
-  livro-app:
-    build: ./MVC-UI
+    networks:
+        - net_app
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    hostname: "rabbitmq"
+    ports:
+        - 5672:5672
+        - 15672:15672
+    networks:
+        - net_app
+
+  relatorio:
+    image: ${DOCKER_REGISTRY-}relatorio
+    build:
+      context: .
+      dockerfile: src/Relatorio.API/Dockerfile
     environment:
       DbServer: "mssql-server"
       DbPort: "1433"
       DbUser: "SA"
       Password: "numsey#2021"
       Database: "LivrosDb"
+      HostName: "rabbitmq"
     ports: 
       - "8090:80"
+    depends_on:
+        - rabbitmq
+    networks:
+        - net_app
+   
+networks:
+  net_app:
+    driver: bridge
