@@ -11,8 +11,13 @@ namespace DevFreela.infrastructure.MessageBus
         {
             _factory = new ConnectionFactory
             {
-                HostName = "localhost"
+                HostName = "rabbitmq",
+                Port = 5672
             };
+
+            _factory.UserName = "guest";
+
+            _factory.Password = "guest";
         }
 
         public void Publish(string queue, byte[] message)
