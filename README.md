@@ -3,7 +3,7 @@
 <hr/>
 
 <p align="center">
-    <img src="/gerador-de-relatorio/Relatorio.API/wwwroot/helth-checks.png" alt="Health Checks" title="Health Checks">
+    <img src="/helth-checks.png" alt="Health Checks" title="Health Checks">
 </p> 
 
 
