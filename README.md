@@ -3,7 +3,7 @@
 <hr/>
 
 <p align="center">
-    <img src="/img/chat.gif" alt="Demo do chat hospedado no Azure" title="Demo do chat hospedado no Azure">
+    <img src="/gerador-de-relatorio/Relatorio.API/wwwroot/helth-checks.png" alt="Health Checks" title="Health Checks">
 </p> 
 
 
