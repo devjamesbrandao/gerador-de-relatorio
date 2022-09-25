@@ -4,12 +4,12 @@
 
 ### ` ❤ Helth Checks`
 <p align="center">
-    <img src="../Img/helth-checks.png" alt="Health Checks" title="Health Checks">
+    <img src="/Img/helth-checks.png" alt="Health Checks" title="Health Checks">
 </p> 
 
 ### ` 💻 Executando aplicação no Docker com Visual Studio`
 <p align="center">
-    <img src="../Img/visual-studio.png" alt="Executando aplicação no ambiente Docker" title="Executando aplicação no ambiente Docker">
+    <img src="/Img/visual-studio.png" alt="Executando aplicação no ambiente Docker" title="Executando aplicação no ambiente Docker">
 </p> 
 
 
