@@ -3,7 +3,7 @@
 <hr/>
 
 <p align="center">
-    <img src="/helth-checks.png" alt="Health Checks" title="Health Checks">
+    <img src="../Img/helth-checks.png" alt="Health Checks" title="Health Checks">
 </p> 
 
 
