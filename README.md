@@ -23,6 +23,12 @@
 * Docker Compose
 
 ### ` 🌐 Referências`
+- <p>.NET Core 2.2 + ASP.NET Core 2.2 + RabbitMQ: exemplos utilizando mensageria: https://renatogroffe.medium.com/net-core-2-2-asp-net-core-2-2-rabbitmq-exemplos-utilizando-mensageria-deb54ce63713</p>
 
+- <p>Docker - Usando Docker-Compose, ASP .NET Core e SQL Server com VS Code: https://www.macoratti.net/21/04/docker_sqlasp1.htm</p>
+
+- <p>AMQP – Protocolo de Comunicação para IoT: https://embarcados.com.br/amqp-protocolo-de-comunicacao-para-iot/</p>
+
+- <p>Tutorial: Get started with ASP.NET Core SignalR: https://learn.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-6.0&tabs=visual-studio</p>
 
 
